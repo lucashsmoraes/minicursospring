@@ -1,4 +1,4 @@
-package com.minicursospring.minicursospring.com.minicursospring.minicursospring.models;
+package com.minicursospring.minicursospring.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
