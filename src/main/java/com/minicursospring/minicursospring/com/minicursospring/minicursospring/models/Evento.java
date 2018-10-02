@@ -1,12 +1,23 @@
 package com.minicursospring.minicursospring.com.minicursospring.minicursospring.models;
 
-public class Evento {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class Evento implements Serializable{
+    private static final long SerialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int codigo;
 
     private String nome;
     private String local;
     private String data;
     private String horario;
-
     public String getNome() {
         return nome;
     }
@@ -37,5 +48,13 @@ public class Evento {
 
     public void setHorario(String horario) {
         this.horario = horario;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 }
