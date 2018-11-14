@@ -1,10 +1,13 @@
 package com.minicursospring.minicursospring.controllers;
 
+import com.minicursospring.minicursospring.models.Convidado;
 import com.minicursospring.minicursospring.models.Evento;
+import com.minicursospring.minicursospring.repository.ConvidadoRepository;
 import com.minicursospring.minicursospring.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +17,8 @@ public class EventoController {
 
     @Autowired
     private EventoRepository eventoRepository;
+    @Autowired
+    private ConvidadoRepository convidadoRepository;
 
     @RequestMapping(value = "/cadastrarEvento", method = RequestMethod.GET)
     public String form(){
@@ -41,5 +46,13 @@ public class EventoController {
         mv.addObject("evento", evento);
 
         return mv;
+    }
+
+    @PostMapping(value="/{codigo}")
+    public String detalhesEventoPost(@PathVariable long codigo, Convidado convidado){
+        Evento evento = eventoRepository.findByCodigo(codigo);
+        convidado.setEvento(evento);
+        convidadoRepository.save(convidado);
+        return "redirect:/{codigo}";
     }
 }
