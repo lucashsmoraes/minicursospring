@@ -1,15 +1,22 @@
 package com.minicursospring.minicursospring.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
 public class Convidado {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NotEmpty
     private String rg;
+
+    @NotEmpty
     private String nomeConvidado;
 
     @ManyToOne
@@ -40,5 +47,13 @@ public class Convidado {
 
     public void setEvento(Evento evento) {
         this.evento = evento;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

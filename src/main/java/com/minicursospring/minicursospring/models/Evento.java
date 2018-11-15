@@ -1,6 +1,9 @@
 package com.minicursospring.minicursospring.models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,9 +15,13 @@ public class Evento implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
 
+    @NotEmpty
     private String nome;
+    @NotEmpty
     private String local;
+    @NotEmpty
     private String data;
+    @NotEmpty
     private String horario;
 
     @OneToMany
